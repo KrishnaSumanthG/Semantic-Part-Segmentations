@@ -1,0 +1,30 @@
+<!DOCTYPE FilterScript>
+<FilterScript>
+ <filter name="Compute normals for point sets">
+  <Param type="RichInt" description="Neighbour num" tooltip="The number of neighbors used to estimate normals." name="K" value="16"/>
+  <Param type="RichInt" description="Smooth Iteration" tooltip="The number of smoothing iteration done on the p used to estimate and propagate normals." name="smoothIter" value="3"/>
+  <Param type="RichBool" description="Flip normals w.r.t. viewpoint" tooltip="If the 'viewpoint' (i.e. scanner position) is known, it can be used to disambiguate normals orientation, so that all the normals will be oriented in the same direction." name="flipFlag" value="true"/>
+  <Param x="0" y="0" z="0" type="RichPoint3f" description="Viewpoint Pos." tooltip="The viewpoint position can be set by hand (i.e. getting the current viewpoint) or it can be retrieved from mesh camera, if the viewpoint position is stored there." name="viewPos"/>
+ </filter>
+ <xmlfilter name="Surface Reconstruction: Screened Poisson">
+  <xmlparam name="cgDepth" value="0"/>
+  <xmlparam name="confidence" value="false"/>
+  <xmlparam name="depth" value="12"/>
+  <xmlparam name="fullDepth" value="5"/>
+  <xmlparam name="iters" value="8"/>
+  <xmlparam name="pointWeight" value="4"/>
+  <xmlparam name="preClean" value="false"/>
+  <xmlparam name="samplesPerNode" value="1"/>
+  <xmlparam name="scale" value="1.1"/>
+  <xmlparam name="visibleLayer" value="false"/>
+ </xmlfilter>
+ <filter name="Change the current layer">
+  <Param type="RichMesh" description="Mesh" tooltip="The name of the current mesh" name="mesh" value="1"/>
+ </filter>
+ <filter name="Parametrization: Trivial Per-Triangle">
+  <Param type="RichInt" description="Quads per line" tooltip="Indicates how many triangles have to be put on each line (every quad contains two triangles)&#xa;Leave 0 for automatic calculation" name="sidedim" value="0"/>
+  <Param type="RichInt" description="Texture Dimension (px)" tooltip="Gives an indication on how big the texture is" name="textdim" value="2048"/>
+  <Param type="RichInt" description="Inter-Triangle border (px)" tooltip="Specifies how many pixels to be left between triangles in parametrization domain" name="border" value="0"/>
+  <Param type="RichEnum" enum_val0="Basic" enum_val1="Space-optimizing" description="Method" enum_cardinality="2" tooltip="Choose space optimizing to map smaller faces into smaller triangles in parametrizazion domain" name="method" value="0"/>
+ </filter>
+</FilterScript>
